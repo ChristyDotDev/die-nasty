@@ -8,21 +8,20 @@ export async function getServerSideProps(context) {
   const rosters_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/rosters`)
   const rosters_data = await rosters_res.json();
   const rostered_players = rosters_data.flatMap(r => r.players);;
-  console.log(rostered_players)
 
   const users_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/users`)
   const users_data = await users_res.json();
 
   const players_res = await fetch(`https://api.sleeper.app/v1/players/nfl`)
   const players_data = await players_res.json();
-  const rostered_players_data = Object.values(players_data).filter(p => rostered_players.includes(p.player_id) )
+  const rostered_players_data = Object.values(players_data)
+            .filter(p => rostered_players.includes(p.player_id));
 
   let player_map = {};
   for(var i = 0; i < rostered_players_data.length; i++) {
     player_map[rostered_players_data[i].player_id] = rostered_players_data[i];
   }
-  //console.log(rosters_data)
-  //console.log(users_data)
+  
   return { props: { rosters: rosters_data, users: users_data, players: player_map } };
 }
 
@@ -30,8 +29,8 @@ export default function Home({ rosters, users, players }) {
   const router = useRouter();
 
   return (
-    <Container maxW="750px" mt="20px">
-      <Tabs mb="20px" isFitted colorScheme="orange">
+    <Container maxW="container.xl">
+      <Tabs isFitted colorScheme="gray">
         <TabList>
           {users.map((user) => (
             <Tab>{user.display_name}</Tab>
@@ -40,7 +39,7 @@ export default function Home({ rosters, users, players }) {
         <TabPanels>
           {users.map((user) => (
             <TabPanel>
-              <Table variant="striped" mb="40px">
+              <Table variant="striped">
                 <Thead>
                   <Tr>
                     <Th>Player</Th>

@@ -5,7 +5,7 @@ export default function Header() {
   const router = useRouter();
   return (
     <Flex
-      p={3}
+      p={1}
       borderBottom="2px"
       borderColor="red.200"
       cursor="pointer"
@@ -14,6 +14,7 @@ export default function Header() {
       <Heading as="h3" size="lg" m={1}>
         Die Nasty
       </Heading>
+
     </Flex>
   );
 }
