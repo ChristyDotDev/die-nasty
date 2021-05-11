@@ -11,12 +11,17 @@ export async function getServerSideProps(context) {
   const users_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/users`)
   const users_data = await users_res.json();
 
-  console.log(rosters_data)
-  console.log(users_data)
-  return { props: { rosters: rosters_data, users: users_data } };
+  const players_res = await fetch(`https://api.sleeper.app/v1/players/nfl`)
+  const players_data = await players_res.json();
+
+  console.log(players_data[10])
+  
+  //console.log(rosters_data)
+  //console.log(users_data)
+  return { props: { rosters: rosters_data, users: users_data, players: players_data } };
 }
 
-export default function Home({ rosters, users }) {
+export default function Home({ rosters, users, players }) {
   const router = useRouter();
 
   return (
@@ -30,20 +35,20 @@ export default function Home({ rosters, users }) {
         <TabPanels>
           {users.map((user) => (
             <TabPanel>
-              <Heading as="h2" size="lg">
-                {user.user_id} - {user.display_name} - {rosters.find(({ owner_id}) => owner_id === user.user_id ).roster_id}
-              </Heading>
-
-              <Table mb="40px">
+              <Table variant="striped" mb="40px">
                 <Thead>
                   <Tr>
                     <Th>Player</Th>
+                    <Th>Position</Th>
+                    <Th>Team</Th>
                   </Tr>
                 </Thead>
                 <Tbody>
                   {rosters.find(({ owner_id}) => owner_id === user.user_id ).players.map((player) => (
                     <Tr>
-                      <Td fontWeight="bold">{player}</Td>
+                      <Td fontWeight="bold">{players[player].full_name}</Td>
+                      <Td fontWeight="bold">{players[player].position}</Td>
+                      <Td fontWeight="bold">{players[player].team}</Td>
                     </Tr>
                   ))}
                 </Tbody>
