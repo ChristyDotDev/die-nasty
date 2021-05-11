@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
   }
   //console.log(rosters_data)
   //console.log(users_data)
-  return { props: { rosters: rosters_data, users: users_data, players: theNewMap } };
+  return { props: { rosters: rosters_data, users: users_data, players: player_map } };
 }
 
 export default function Home({ rosters, users, players }) {
