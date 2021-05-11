@@ -7,18 +7,23 @@ const league_id = `${process.env.league_id}`
 export async function getServerSideProps(context) {
   const rosters_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/rosters`)
   const rosters_data = await rosters_res.json();
+  const rostered_players = rosters_data.flatMap(r => r.players);;
+  console.log(rostered_players)
 
   const users_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/users`)
   const users_data = await users_res.json();
 
   const players_res = await fetch(`https://api.sleeper.app/v1/players/nfl`)
   const players_data = await players_res.json();
+  const rostered_players_data = Object.values(players_data).filter(p => rostered_players.includes(p.player_id) )
 
-  console.log(players_data[10])
-  
+  let player_map = {};
+  for(var i = 0; i < rostered_players_data.length; i++) {
+    player_map[rostered_players_data[i].player_id] = rostered_players_data[i];
+  }
   //console.log(rosters_data)
   //console.log(users_data)
-  return { props: { rosters: rosters_data, users: users_data, players: players_data } };
+  return { props: { rosters: rosters_data, users: users_data, players: theNewMap } };
 }
 
 export default function Home({ rosters, users, players }) {
@@ -45,7 +50,7 @@ export default function Home({ rosters, users, players }) {
                 </Thead>
                 <Tbody>
                   {rosters.find(({ owner_id}) => owner_id === user.user_id ).players.map((player) => (
-                    <Tr>
+                    <Tr key={player}>
                       <Td fontWeight="bold">{players[player].full_name}</Td>
                       <Td fontWeight="bold">{players[player].position}</Td>
                       <Td fontWeight="bold">{players[player].team}</Td>
