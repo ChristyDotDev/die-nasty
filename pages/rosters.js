@@ -1,6 +1,7 @@
 import { Container, Heading } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
+import { Image, Text, Stack } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 const league_id = `${process.env.league_id}`
 
@@ -19,6 +20,7 @@ export async function getServerSideProps(context) {
 
   let player_map = {};
   for(var i = 0; i < rostered_players_data.length; i++) {
+    rostered_players_data[i].avatar_url = `https://sleepercdn.com/content/nfl/players/${rostered_players_data[i].player_id}.jpg`
     player_map[rostered_players_data[i].player_id] = rostered_players_data[i];
   }
   
@@ -51,7 +53,12 @@ export default function Rosters({ rosters, users, players }) {
                 <Tbody>
                   {rosters.find(({ owner_id}) => owner_id === user.user_id ).players.map((player) => (
                     <Tr key={player} data-id={player}>
-                      <Td fontWeight="bold">{players[player].full_name}</Td>
+                      <Td fontWeight="bold">
+                        <Stack direction="row">
+                          <Image src={players[player].avatar_url} borderRadius="full" boxSize="25px" objectFit="cover"/>
+                          <Text>{players[player].full_name}</Text>
+                        </Stack>
+                      </Td>
                       <Td fontWeight="bold">{players[player].position}</Td>
                       <Td fontWeight="bold">{players[player].team}</Td>
                     </Tr>
