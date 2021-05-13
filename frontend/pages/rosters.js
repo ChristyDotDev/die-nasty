@@ -55,7 +55,7 @@ export default function Rosters({ rosters, users, players }) {
                     <Tr key={player} data-id={player}>
                       <Td fontWeight="bold">
                         <Stack direction="row">
-                          <Image src={players[player].avatar_url} borderRadius="full" boxSize="25px" objectFit="cover"/>
+                          <Image src={players[player].avatar_url} fallbackSrc="https://upload.wikimedia.org/wikipedia/commons/0/0e/Lakeyboy_Silhouette.PNG" borderRadius="full" boxSize="25px" objectFit="cover"/>
                           <Text>{players[player].full_name}</Text>
                         </Stack>
                       </Td>
