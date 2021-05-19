@@ -27,7 +27,10 @@ export async function getServerSideProps(context) {
 
 export default function Trades({ users, trades, players }) {
   const router = useRouter();
-  
+
+  const handleTradeClick = (id) => {
+    router.push(`/trade/${id}`);
+  };
 
   return (
     <Container maxW="container.xl">
@@ -40,7 +43,7 @@ export default function Trades({ users, trades, players }) {
           </Thead>
           <Tbody>
             {trades.map((trade) => (
-              <Tr key={trade.transaction_id} data-id={trade.transaction_id}>
+              <Tr key={trade.transaction_id} data-id={trade.transaction_id} onClick={() => handleTradeClick(trade.transaction_id)} >
                 <Td fontWeight="bold">{new Date(trade.status_updated).toLocaleDateString()}</Td>
                 <Td>{trade.transaction_id}</Td>
               </Tr>
