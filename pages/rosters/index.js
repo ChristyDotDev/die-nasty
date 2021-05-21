@@ -9,8 +9,6 @@ const league_api = `${process.env.league_api}`
 export async function getServerSideProps(context) {
   const rosters_res = await fetch(`${league_api}/league/rosters`)
   const rosters_data = await rosters_res.json();
-  console.log(rosters_data)
-
   const users_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/users`)
   const users_data = await users_res.json();
   

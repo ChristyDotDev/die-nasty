@@ -31,6 +31,11 @@ export default function Rosters({ }) {
             Dynasty101
           </Link>
         </ListItem>
+        <ListItem>
+          <Link href="rosters/analyse/">
+            Roster Analyser
+          </Link>
+        </ListItem>
       </List>
     </Container>
   );
