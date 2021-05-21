@@ -32,7 +32,12 @@ export default function Trades({ trades }) {
           <Tbody>
             {trades.map((trade) => (
               <Tr key={trade.transaction_id} data-id={trade.transaction_id} >
-                <Td fontWeight="bold">{new Date(trade.timestamp).toLocaleDateString()}</Td>
+                <Td fontWeight="bold">{new Intl.DateTimeFormat("en-GB", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit"
+                  }).format(new Date(trade.timestamp))}
+                </Td>
                 <Td onClick={() => handleTradeClick(trade.transaction_id)}>{trade.transaction_id}</Td>
                 <Td>
                 <HStack spacing="20px" verticalAlign='top'>
