@@ -9,7 +9,7 @@ export default function Analyse({  }) {
   
   return (
     <Container maxW="container.xl">
-      <iframe src="https://christyc92.shinyapps.io/dynasty-roster-analysis/" width="100%" height="500px"></iframe>
+      <iframe src="https://christyc92.shinyapps.io/dienasty-rosters/" width="100%" height="500px"></iframe>
     </Container>
   );
 }
