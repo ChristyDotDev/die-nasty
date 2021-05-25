@@ -12,7 +12,7 @@ export default function Trade({ trade }) {
 
   return (
     <Container maxW="container.xl">
-        <Text>{trade}</Text>
+      <Text>Bad deal for all involved. Can't believe you clowns keep doing this</Text>
     </Container>
   );
 }

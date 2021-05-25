@@ -8,8 +8,6 @@ const league_id = `${process.env.league_id}`
 export default function Analyse({  }) {
   
   return (
-    <Container maxW="container.xl">
-      <iframe src="https://christyc92.shinyapps.io/dienasty-rosters/" width="100%" height="500px"></iframe>
-    </Container>
+    <iframe src="https://christyc92.shinyapps.io/dienasty-rosters/" width="100%" height="1600px"></iframe>
   );
 }
