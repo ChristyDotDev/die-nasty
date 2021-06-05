@@ -1,4 +1,4 @@
-import { Container, Heading, Text } from "@chakra-ui/layout";
+import { Container, Text } from "@chakra-ui/layout";
 import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {

@@ -1,6 +1,5 @@
 import { Container, Heading } from "@chakra-ui/layout";
-import { List, ListItem, ListIcon, OrderedList, UnorderedList, Text, Link } from "@chakra-ui/react"
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { List, ListItem, Link } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 
 export async function getServerSideProps(context) {
