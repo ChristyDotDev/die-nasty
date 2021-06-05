@@ -1,6 +1,6 @@
 import { Container, Text } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
-import { HStack, Box } from "@chakra-ui/react"
+import { HStack, Box, Button } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 const league_api = `${process.env.league_api}`
 
@@ -24,8 +24,8 @@ export default function Trades({ trades }) {
           <Thead>
             <Tr>
               <Th>Date</Th>
-              <Th>Txn ID</Th>
               <Th>Trade</Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -37,7 +37,6 @@ export default function Trades({ trades }) {
                     day: "2-digit"
                   }).format(new Date(trade.timestamp))}
                 </Td>
-                <Td onClick={() => handleTradeClick(trade.transaction_id)}>{trade.transaction_id}</Td>
                 <Td>
                 <HStack spacing="20px" verticalAlign='top'>
                   {trade.trade_parts.map((tp) => (
@@ -49,6 +48,9 @@ export default function Trades({ trades }) {
                     </Box>
                   ))}
                 </HStack>
+                </Td>
+                <Td>
+                  <Button onClick={() => handleTradeClick(trade.transaction_id)} colorScheme="blue">Analyse</Button>
                 </Td>
               </Tr>
             ))}

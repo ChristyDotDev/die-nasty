@@ -35,7 +35,7 @@ export default function Rosters({ }) {
       <Heading as="h2" size="md" m={1}>Christy's Homemade Tools</Heading>
       <List>
         <ListItem>
-          <Link href="rosters/analyse/">
+          <Link onClick={() => router.push(`/tools/rosterAnalyser`)}>
             Roster Analyser
           </Link>
         </ListItem>
