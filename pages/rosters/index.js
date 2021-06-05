@@ -1,4 +1,4 @@
-import { Container, Heading } from "@chakra-ui/layout";
+import { Container } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
 import { Image, Text, Stack } from "@chakra-ui/react"

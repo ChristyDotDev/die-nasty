@@ -1,7 +1,6 @@
-import { Container, Heading, Text } from "@chakra-ui/layout";
+import { Container, Text } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
-import { Stack, HStack, VStack, Box } from "@chakra-ui/react"
+import { HStack, Box } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 const league_api = `${process.env.league_api}`
 
