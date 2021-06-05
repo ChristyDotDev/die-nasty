@@ -7,7 +7,7 @@ To run:
 npm run dev
 ```
 
-Hosted at [http://localhost:3000](http://localhost:3000).
+[http://localhost:3000](http://localhost:3000).
 
 # Deploy
 
@@ -22,4 +22,5 @@ Env variables required:
 
 ```
 league_id=[the ID of the league in Sleeper]
+league_api=[URL of the dienasty_backend]
 ```

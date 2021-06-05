@@ -1,4 +1,5 @@
 import { Container, Heading, HStack, VStack } from "@chakra-ui/layout";
+import { Container, Heading } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
 import { Image, Text, Stack, Box, Avatar,  Flex } from "@chakra-ui/react"
