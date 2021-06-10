@@ -1,21 +1,24 @@
 import { Container, Heading } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
-import { Image  } from "@chakra-ui/react"
+import { Image } from "@chakra-ui/react"
 import { useRouter } from "next/router";
+import Countdown from "../components/Countdown"
 const league_api = `${process.env.league_api}`
+const league_start = `${process.env.league_start}`
 
 export async function getServerSideProps(context) { 
   const schedule_res = await fetch(`${league_api}/league/schedule`)
   const schedule_data = await schedule_res.json();
-  return { props: { schedule: schedule_data } };
+  return { props: { schedule: schedule_data, league_start: league_start } };
 }
 
-export default function Home({ schedule }) {
+export default function Home({ schedule, league_start }) {
   const router = useRouter();
   
   return (
     <Container maxW="container.xl">
       <Heading as="h3" size="md">Kickoff: 10 Sept 2021, 01:20</Heading>
+      <Countdown countdownTo={league_start}></Countdown>
       <Table variant="striped">
         <Thead>
           <Tr>
