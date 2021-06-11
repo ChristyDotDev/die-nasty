@@ -11,23 +11,25 @@ export async function getServerSideProps(context) {
   const rosters_data = await rosters_res.json();
   const users_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/users`)
   const users_data = await users_res.json();
-  
   return { props: { rosters: rosters_data, users: users_data } };
 }
 
-export default function Rosters({ rosters, users, players }) {
+export default function Rosters({ rosters }) {
   const router = useRouter();
+  const rosterIndex = rosters.findIndex(r => r.roster_id === parseInt(router.query.roster));
+  console.log("ROSTER:" + parseInt(router.query.roster))
+  console.log("INDEX:" + rosterIndex)
   
   return (
     <Container maxW="container.xl">
-      <Tabs isFitted colorScheme="teal">
+      <Tabs isFitted colorScheme="teal" defaultIndex={rosterIndex >= 0 ? rosterIndex : 0}>
         <TabList>
-          {users.map((user) => (
-            <Tab>{user.display_name}</Tab>
+          {rosters.map((roster) => (
+            <Tab>{roster.owner_name}</Tab>
           ))}
         </TabList>
         <TabPanels>
-          {users.map((user) => (
+          {rosters.map((roster) => (
             <TabPanel>
               <Table variant="striped">
                 <Thead>
@@ -38,7 +40,7 @@ export default function Rosters({ rosters, users, players }) {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {rosters.find(({ owner_id}) => owner_id === user.user_id ).players.map((player) => (
+                  {roster.players.map((player) => (
                     <Tr key={player.player_id} data-id={player.player_id}>
                       <Td fontWeight="bold">
                         <Stack direction="row">
