@@ -33,9 +33,9 @@ export default function Home({ schedule, league_start }) {
           {Object.keys(schedule).map((schedule_id) => (
           <Tr w='100%'>
             <Td onClick={() => handleRosterClick(schedule[schedule_id][0].roster)}><Image src={schedule[schedule_id][0].avatar} borderRadius="full" boxSize="25px" objectFit="cover"/></Td>
-            <Td>{schedule[schedule_id][0].team}</Td>
+            <Td onClick={() => handleRosterClick(schedule[schedule_id][0].roster)}>{schedule[schedule_id][0].team}</Td>
             <Td>vs</Td>
-            <Td textAlign='right'>{schedule[schedule_id][1].team}</Td>
+            <Td onClick={() => handleRosterClick(schedule[schedule_id][1].roster)} textAlign='right'>{schedule[schedule_id][1].team}</Td>
             <Td onClick={() => handleRosterClick(schedule[schedule_id][1].roster)}><Image src={schedule[schedule_id][1].avatar} borderRadius="full" boxSize="25px" objectFit="cover"/></Td>
           </Tr>
       ))}
