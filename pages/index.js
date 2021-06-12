@@ -10,10 +10,6 @@ const league_start = `${process.env.league_start}`
 export async function getServerSideProps(context) { 
   const schedule_res = await fetch(`${league_api}/league/schedule`)
   const schedule_data = await schedule_res.json();
-  //TODO - show full schedule
-  console.log(schedule_data);
-
-  
   return { props: { schedule: schedule_data, league_start: league_start } };
 }
 
