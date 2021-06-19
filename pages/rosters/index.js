@@ -17,8 +17,6 @@ export async function getServerSideProps(context) {
 export default function Rosters({ rosters }) {
   const router = useRouter();
   const rosterIndex = rosters.findIndex(r => r.roster_id === parseInt(router.query.roster));
-  console.log("ROSTER:" + parseInt(router.query.roster))
-  console.log("INDEX:" + rosterIndex)
   
   return (
     <Container maxW="container.xl">

@@ -11,8 +11,6 @@ export default function Rosters({ }) {
   
   return (
     <Container maxW="container.xl">
-
-
       <Heading as="h2" size="md" m={1}>Calculators</Heading>
       <List>
         <ListItem>
@@ -37,6 +35,15 @@ export default function Rosters({ }) {
         <ListItem>
           <Link onClick={() => router.push(`/tools/rosterAnalyser`)}>
             Roster Analyser
+          </Link>
+        </ListItem>
+      </List>
+
+      <Heading as="h2" size="md" m={1}>League Info</Heading>
+      <List>
+        <ListItem>
+          <Link onClick={() => router.push(`/waiver-order`)}>
+            Waiver Order
           </Link>
         </ListItem>
       </List>

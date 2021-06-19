@@ -3,7 +3,7 @@ import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/tabs";
 import { Image } from "@chakra-ui/react"
 import { useRouter } from "next/router";
-import Countdown from "../components/Countdown"
+import Countdown from "../components/league/Countdown"
 const league_api = `${process.env.league_api}`
 const league_start = `${process.env.league_start}`
 
@@ -30,7 +30,7 @@ export default function Home({ schedule, league_start }) {
       <Tabs isFitted colorScheme="teal" defaultIndex={schedule.current_week > 0 ? schedule.current_week - 1 : 0}>
         <TabList>
           {Object.keys(schedule.fixtures).map((week) => (
-            <Tab size="xs">Week {week}</Tab>
+            <Tab size="xs" key={week}>Week {week}</Tab>
           ))}
         </TabList>
         <TabPanels>
@@ -41,7 +41,7 @@ export default function Home({ schedule, league_start }) {
                 </Thead>
                   <Tbody>
                   {Object.keys(schedule.fixtures[week]).map((fixture_id) => (
-                  <Tr w='100%'>
+                  <Tr w='100%' key={fixture_id}>
                     <Td onClick={() => handleRosterClick(schedule.fixtures[week][fixture_id][0].roster)}><Image src={schedule.fixtures[week][fixture_id][0].avatar} borderRadius="full" boxSize="25px" objectFit="cover"/></Td>
                     <Td onClick={() => handleRosterClick(schedule.fixtures[week][fixture_id][0].roster)}>{schedule.fixtures[week][fixture_id][0].team}</Td>
                     <Td>vs</Td>
