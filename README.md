@@ -1,5 +1,7 @@
 # Die Nasty League Site
 
+League site for my dynasty fantasy NFL league, hosted at [dienasty.football](https://dienasty.football). First few requests will always timeout as it's using a backend on Heroku which takes an age to start up and I've not got round to optimising this yet
+
 # Getting Started
 
 To run:
@@ -19,7 +21,6 @@ One-click deploy
 # Config
 
 Env variables required:
-
 ```
 league_id=[the ID of the league in Sleeper]
 league_api=[URL of the dienasty_backend]

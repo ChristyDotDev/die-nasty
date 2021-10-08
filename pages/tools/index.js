@@ -37,6 +37,11 @@ export default function Rosters({ }) {
             Roster Analyser
           </Link>
         </ListItem>
+      <ListItem>
+          <Link onClick={() => router.push(`/tools/leagueSimulator`)}>
+              League Simulator
+          </Link>
+      </ListItem>
       </List>
 
       <Heading as="h2" size="md" m={1}>League Info</Heading>
