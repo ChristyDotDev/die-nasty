@@ -7,7 +7,7 @@ import Countdown from "../components/league/Countdown"
 const league_api = `${process.env.league_api}`
 const league_start = `${process.env.league_start}`
 
-export async function getServerSideProps(context) { 
+export async function getStaticProps(context) {
   const schedule_res = await fetch(`${league_api}/league/schedule`)
   const schedule_data = await schedule_res.json();
   return { props: { schedule: schedule_data, league_start: league_start } };

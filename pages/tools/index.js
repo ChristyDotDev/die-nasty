@@ -2,7 +2,7 @@ import { Container, Heading } from "@chakra-ui/layout";
 import { List, ListItem, Link } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   return { props: { } };
 }
 

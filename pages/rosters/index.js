@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const league_id = `${process.env.league_id}`
 const league_api = `${process.env.league_api}`
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const rosters_res = await fetch(`${league_api}/league/rosters`)
   const rosters_data = await rosters_res.json();
   const users_res = await fetch(`https://api.sleeper.app/v1/league/${league_id}/users`)
