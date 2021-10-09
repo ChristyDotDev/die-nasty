@@ -10,6 +10,7 @@ const league_start = `${process.env.league_start}`
 export async function getStaticProps(context) {
   const schedule_res = await fetch(`${league_api}/league/schedule`)
   const schedule_data = await schedule_res.json();
+  console.log(schedule_data);
   return { props: { schedule: schedule_data, league_start: league_start } };
 }
 
@@ -27,7 +28,7 @@ export default function Home({ schedule, league_start }) {
     <Container maxW="container.xl">
       <Heading as="h3" size="md">Kickoff: 10 Sept 2021, 01:20</Heading>
       <Countdown countdownTo={league_start}></Countdown>
-      <Tabs isFitted colorScheme="teal" defaultIndex={schedule.current_week > 0 ? schedule.current_week - 1 : 0}>
+      <Tabs isFitted colorScheme="teal" defaultIndex={schedule.currentWeek > 0 ? schedule.currentWeek - 1 : 0}>
         <TabList>
           {Object.keys(schedule.fixtures).map((week) => (
             <Tab size="xs" key={week}>Week {week}</Tab>
