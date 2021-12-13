@@ -4,7 +4,7 @@ import { HStack, Box, Button } from "@chakra-ui/react"
 import { useRouter } from "next/router";
 const league_api = `${process.env.league_api}`
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const trades_res = await fetch(`${league_api}/league/trades`)
   const trades_data = await trades_res.json();
   
