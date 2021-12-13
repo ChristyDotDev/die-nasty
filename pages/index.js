@@ -7,8 +7,11 @@ import Countdown from "../components/league/Countdown"
 const league_api = `${process.env.league_api}`
 const league_start = `${process.env.league_start}`
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const schedule_res = await fetch(`${league_api}/league/schedule`)
+  const playoff_bracket = await fetch(`https://api.sleeper.app/v1/league/${process.env.league_id}/winners_bracket`)
+  const bracket_data = await playoff_bracket.json()
+  console.log(bracket_data);
   const schedule_data = await schedule_res.json();
   console.log(schedule_data);
   return { props: { schedule: schedule_data, league_start: league_start } };
