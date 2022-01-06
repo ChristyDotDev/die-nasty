@@ -7,9 +7,13 @@ import Countdown from "../components/league/Countdown"
 const league_api = `${process.env.league_api}`
 const league_start = `${process.env.league_start}`
 
-export async function getServerSideProps(context) { 
+export async function getStaticProps(context) {
   const schedule_res = await fetch(`${league_api}/league/schedule`)
+  //const playoff_bracket = await fetch(`https://api.sleeper.app/v1/league/${process.env.league_id}/winners_bracket`)
+  //const bracket_data = await playoff_bracket.json()
+  //console.log(bracket_data);
   const schedule_data = await schedule_res.json();
+  console.log(schedule_data);
   return { props: { schedule: schedule_data, league_start: league_start } };
 }
 
@@ -25,9 +29,12 @@ export default function Home({ schedule, league_start }) {
   
   return (
     <Container maxW="container.xl">
-      <Heading as="h3" size="md">Kickoff: 10 Sept 2021, 01:20</Heading>
       <Countdown countdownTo={league_start}></Countdown>
+<<<<<<< HEAD
       <Tabs isFitted colorScheme="teal" defaultIndex={schedule.current_week > 0 && schedule.current_week < 18 ? schedule.current_week - 1 : 0}>
+=======
+      <Tabs isFitted colorScheme="teal" defaultIndex={schedule.currentWeek > 0 ? schedule.currentWeek - 1 : 0}>
+>>>>>>> fa95379e563f18c1627adcfa9d33cd4b44cb64be
         <TabList>
           {Object.keys(schedule.fixtures).map((week) => (
             <Tab size="xs" key={week}>Week {week}</Tab>

@@ -1,0 +1,10 @@
+name: CI
+on:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Nightly deploy
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/6160b0b79948fdcaeb916af2

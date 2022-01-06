@@ -3,7 +3,7 @@ import { ListItem, OrderedList } from "@chakra-ui/react"
 
 const league_api = `${process.env.league_api}`
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const waivers_res = await fetch(`${league_api}/league/waiver`)
   const waivers_data = await waivers_res.json();
   return { props: { waivers: waivers_data } };
