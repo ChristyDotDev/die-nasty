@@ -27,7 +27,7 @@ export default function Home({ schedule, league_start }) {
     <Container maxW="container.xl">
       <Heading as="h3" size="md">Kickoff: 10 Sept 2021, 01:20</Heading>
       <Countdown countdownTo={league_start}></Countdown>
-      <Tabs isFitted colorScheme="teal" defaultIndex={schedule.current_week > 0 ? schedule.current_week - 1 : 0}>
+      <Tabs isFitted colorScheme="teal" defaultIndex={schedule.current_week > 0 && schedule.current_week < 18 ? schedule.current_week - 1 : 0}>
         <TabList>
           {Object.keys(schedule.fixtures).map((week) => (
             <Tab size="xs" key={week}>Week {week}</Tab>
