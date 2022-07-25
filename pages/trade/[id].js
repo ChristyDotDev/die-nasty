@@ -43,7 +43,10 @@ export async function getServerSideProps(context) {
     let partsValue = 0
     tp.adds.forEach(add => {
       let value = {"value":0};
-      if(add.startsWith("20")){
+      var regexmatch = add.match(/\((.*)\)/);
+      if(regexmatch){
+        value = elements.find(e => {return e.searchName == toSearchName(regexmatch[1])})
+      } else if(add.startsWith("20")){
         value = elements.find(e => {return e.searchName == toSearchName(add.replace(" ", " Mid "))})
       } else { 
         value = elements.find(e => {return e.searchName == toSearchName(add)});
