@@ -2,6 +2,7 @@ import { Container, Text } from "@chakra-ui/layout";
 import axios from 'axios';
 import cheerio from 'cheerio';
 import { useRouter } from "next/router";
+import { Flex, Spacer, Box } from '@chakra-ui/react'
 const league_api = `${process.env.league_api}`;
 
 function toSearchName(name){
@@ -29,7 +30,7 @@ export async function getServerSideProps(context) {
     console.error(error);
   });
   
-  console.log(elements.slice(0,5))
+  console.log(elements.slice(0,20))
   const trade_id = context.params.id
   const tradesRes = await fetch(`${league_api}/league/trades`)
   const tradesData = await tradesRes.json();
@@ -41,32 +42,45 @@ export async function getServerSideProps(context) {
   trade.trade_parts.forEach(tp => {
     let partsValue = 0
     tp.adds.forEach(add => {
-      const value = elements.find(e => {return e.searchName == toSearchName(add)})
+      let value = {"value":0};
+      if(add.startsWith("20")){
+        value = elements.find(e => {return e.searchName == toSearchName(add.replace(" ", " Mid "))})
+      } else { 
+        value = elements.find(e => {return e.searchName == toSearchName(add)});
+      }
       if(value){
         console.log(add + " = " + value.value)
         partsValue+=parseInt(value.value);
       } else {
-        console.log("Couldn't determine value of "+ add)
+        console.log("Couldn't determine value of " + add)
       }
     })
     tp.value=partsValue
   });
 
   console.log(trade)
-  //TODO - get trade from sleeper
   //normalise trades to get value
   //fuzzy search for player value
-  //render trade
   
-  return { props: { trade: trade_id, values: elements } };
+  return { props: { trades: trade } };
 }
 
-export default function Trade({ trade }) {
+export default function Trade({ trades }) {
   const router = useRouter();
+  console.log(trades.trade_parts)
 
   return (
     <Container maxW="container.xl">
-      <Text>Bad deal for all involved. Can't believe you clowns keep doing this</Text>
+      {trades.trade_parts.map((trade_part) => ( 
+         <Box p='3'>
+          <Text>{trade_part.newRoster}</Text>
+          {trade_part.adds.map((add) => ( 
+            <Text>{add}</Text>
+          ))}
+          <Text>{trade_part.value}</Text>
+        </Box>
+      ))}
+      <Text>Bad deal for all involved. Can't believe you clowns keep doing this. (All picks are estimated as mid round picks, past ones are valued at 0 for now)</Text>
     </Container>
   );
 }
